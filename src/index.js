@@ -8,6 +8,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { store } from './store/store'
 
+
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
@@ -20,3 +21,5 @@ ReactDOM.render(
 reportWebVitals()
 
 // TODO авторизация с модалкой
+// TODO websoket изучить!!!! WebGL, Audio
+// TODO window
