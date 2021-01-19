@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 const FooterSC = styled.footer`
   width: 100%;
@@ -29,6 +30,7 @@ const FooterSC = styled.footer`
 `
 
 const Footer = () => {
+  const { sum } = useSelector(state => state.cart)
   return (
     <FooterSC>
       <a href="tel:88002000600">Телефон для связи: 8 800 2000 600</a>
@@ -36,7 +38,7 @@ const Footer = () => {
       {/*<a href="https://google.com" target="_blank" rel="noreferrer">*/}
       {/*  Перейти в GOOGLE*/}
       {/*</a>*/}
-      <NavLink to={'/cart'}>В корзину</NavLink>
+      <NavLink to={'/cart'}>Коризна: {sum} &#8381;</NavLink>
     </FooterSC>
   )
 }

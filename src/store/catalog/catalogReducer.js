@@ -1,21 +1,23 @@
-import { ALERT_HIDE, ALERT_SHOW } from '../types'
+import { LOAD_CATALOG, MAP_CATALOG } from '../types'
 
 const initState = {
   catalog: null,
-
+  mapCatalog: null
 }
 
 export function catalogReducer(state = initState, { type, payload }) {
   switch (type) {
-    case ALERT_SHOW:
+    case LOAD_CATALOG:
       return {
-        isAlert: true,
-        variant: payload.variant,
-        message: payload.message,
+        ...state,
+        catalog: payload,
       }
 
-    case ALERT_HIDE:
-      return initState
+    case MAP_CATALOG:
+      return {
+        ...state,
+        mapCatalog: payload
+      }
 
     default:
       return state

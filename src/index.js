@@ -21,5 +21,7 @@ ReactDOM.render(
 reportWebVitals()
 
 // TODO авторизация с модалкой
+// TODO токен и прочая лабуда
+
 // TODO websoket изучить!!!! WebGL, Audio
 // TODO window

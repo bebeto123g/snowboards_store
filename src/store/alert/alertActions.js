@@ -1,6 +1,6 @@
 import { ALERT_HIDE, ALERT_SHOW } from '../types'
 
-const showAlert = (variant, message) => {
+export const showAlert = (variant, message) => {
   return (dispatch) => {
     dispatch({
       type: ALERT_SHOW,
@@ -13,10 +13,8 @@ const showAlert = (variant, message) => {
   }
 }
 
-const hideAlert = () => {
+export const hideAlert = () => {
   return {
     type: ALERT_HIDE,
   }
 }
-
-export { showAlert, hideAlert }
