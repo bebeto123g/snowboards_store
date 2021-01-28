@@ -6,10 +6,9 @@ import { loadCatalog } from '../catalog/catalogActions'
 export const initCart = () => {
   return async (dispatch) => {
     const cart = JSON.parse(localStorage.getItem('cart'))
-    if (cart) {
+    if (Object.keys(cart).length) {
       await dispatch(loadCatalog())
       dispatch(setCart(cart))
-      dispatch(sumCart(cart))
     }
   }
 }

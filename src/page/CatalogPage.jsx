@@ -5,6 +5,7 @@ import Loader from '../UI/Loader'
 import { useDispatch, useSelector } from 'react-redux'
 import { loadCatalog } from '../store/catalog/catalogActions'
 import ProductCard from '../components/ProductCard'
+import PageHeader from '../UI/PageHeader'
 
 const ColProduct = styled(Col)`
   padding: 15px;
@@ -23,15 +24,11 @@ const CatalogPage = () => {
     }
   }, [dispatch, catalog])
 
-  if (loading) return <Loader />
-  if (!catalog)
-    return <h1 className="text-center">Ошибка загрузки каталога...</h1>
+  if (loading || !catalog) return <Loader />
 
   return (
     <>
-      <Row className="d-flex justify-content-center my-2">
-        <h1>Каталог сноубордов</h1>
-      </Row>
+      <PageHeader>Каталог сноубордов</PageHeader>
       <Row>
         {catalog.map((product) => (
           <ColProduct md="6" lg="6" xl="4" key={product.id}>

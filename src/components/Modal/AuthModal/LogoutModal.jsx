@@ -1,8 +1,8 @@
 import React from 'react'
 import { Button, Modal } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
-import { hideModal } from '../../store/modal/modalActions'
-import { logout } from '../../store/auth/authActions'
+import { hideModal } from '../../../store/modal/modalActions'
+import { logout } from '../../../store/auth/authActions'
 
 const LogoutModal = () => {
   const dispatch = useDispatch()
@@ -16,7 +16,6 @@ const LogoutModal = () => {
       </Modal.Header>
       <Modal.Footer>
         <Button onClick={() => {
-          dispatch(hideModal())
           dispatch(logout())
         }}>ДА</Button>
         <Button onClick={() => dispatch(hideModal())}>НЕТ</Button>

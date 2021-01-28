@@ -12,6 +12,7 @@ import { catalogReducer } from './catalog/catalogReducer'
 import { cartReducer } from './cart/cartReducer'
 import { authReducer } from './auth/authReducer'
 import { modalReducer } from './modal/modalReducer'
+import { brandsReducer } from './brands/brandsReducer'
 
 // для использования Redux-devTools
 const composeEnhancers =
@@ -27,6 +28,7 @@ export const store = createStore(
     cart: cartReducer,
     auth: authReducer,
     modal: modalReducer,
+    brands: brandsReducer
   }),
   composeEnhancers(applyMiddleware(reduxThunk))
 )

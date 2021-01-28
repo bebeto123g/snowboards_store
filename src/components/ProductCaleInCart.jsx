@@ -1,5 +1,4 @@
 import React from 'react'
-import ProductCard from './ProductCard'
 import { Button } from 'react-bootstrap'
 import PropTypes from 'prop-types'
 import { useDispatch } from 'react-redux'
@@ -25,7 +24,7 @@ const ProductCaleInCart = ({ brand, id, name, price }) => {
   )
 }
 
-ProductCard.propTypes = {
+ProductCaleInCart.propTypes = {
   brand: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,

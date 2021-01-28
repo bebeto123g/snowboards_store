@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { Container } from 'react-bootstrap'
@@ -8,7 +8,7 @@ import SwitchRoutes from './routes/SwitchRoutes'
 import NavbarPanel from './components/Navbar'
 import Footer from './components/Footer'
 import { initCart } from './store/cart/cartActions'
-import ModalWindow from './components/Modal/Modal'
+import ModalWindow from './components/Modal/AuthModal/ModalWindow'
 import { hideModal } from './store/modal/modalActions'
 
 const AppContainer = styled.div`

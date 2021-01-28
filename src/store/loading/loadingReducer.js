@@ -1,7 +1,7 @@
 import { LOADER_SHOW, LOADER_HIDE } from '../types'
 
 const initState = {
-  loading: true,
+  loading: false,
 }
 
 export function loadingReducer(state = initState, { type }) {

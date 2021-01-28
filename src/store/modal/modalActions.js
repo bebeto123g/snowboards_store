@@ -10,7 +10,9 @@ export const showModal = (type) => {
 }
 
 export const hideModal = () => {
-  return {
-    type: MODAL_HIDE,
+  return (dispatch) => {
+    dispatch({
+      type: MODAL_HIDE
+    })
   }
 }

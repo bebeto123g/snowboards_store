@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Button } from 'react-bootstrap'
+import { Button, Row } from 'react-bootstrap'
+import PageHeader from '../UI/PageHeader'
 
 const Home = styled.div`
   color: red;
@@ -8,10 +9,12 @@ const Home = styled.div`
 
 const HomePage = () => {
   return (
-    <Home>
-      <h1>home page</h1>
-      <Button variant={'warning'}>Test</Button>
-    </Home>
+    <>
+      <PageHeader>Домашняя страница</PageHeader>
+      <Row>
+        <Button variant={'outline-success'}>Test button</Button>
+      </Row>
+    </>
   )
 }
 

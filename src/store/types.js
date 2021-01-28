@@ -17,3 +17,5 @@ export const AUTH_LOGOUT = 'AUTH_LOGOUT'
 
 export const MODAL_HIDE = 'MODAL_HIDE'
 export const MODAL_SHOW = 'MODAL_SHOW'
+
+export const LOAD_BRANDS = 'LOAD_BRANDS'

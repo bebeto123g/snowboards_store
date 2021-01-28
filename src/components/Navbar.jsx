@@ -33,12 +33,13 @@ const NavbarPanel = () => {
             Главная
           </LinkNavPanel>
           <LinkNavPanel to={'/catalog'}>Каталог</LinkNavPanel>
+          <LinkNavPanel to={'/brands'}>Брэнды</LinkNavPanel>
         </Nav>
         <LineSearch submit={submitHandler} />
         <Button
           className="ml-5"
           variant="warning"
-          onClick={() => dispatch(showModal('login'))}
+          onClick={() => dispatch(showModal(isLogin ? 'logout' : 'login'))}
         >
           {isLogin ? 'Выйти' : 'Войти'}
         </Button>

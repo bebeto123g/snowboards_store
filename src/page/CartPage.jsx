@@ -1,19 +1,21 @@
 import React from 'react'
 import { Row, Table } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
-import ProductCaleInCart from '../components/ProductCardInCart'
+import ProductCaleInCart from '../components/ProductCaleInCart'
+import PageHeader from '../UI/PageHeader'
 
 const CartPage = () => {
   const { cart } = useSelector((state) => state.cart)
   const { catalog, mapCatalog } = useSelector((state) => state.catalog)
 
-  if (!Object.keys(cart).length) return <h1>Корзина пуста</h1>
+  if (!cart || !Object.keys(cart).length)
+    return (
+      <PageHeader>Корзина пуста</PageHeader>
+    )
 
   return (
     <>
-      <Row className="d-flex justify-content-center my-2">
-        <h1>Корзина</h1>
-      </Row>
+      <PageHeader>Корзина</PageHeader>
       <Row>
         <Table striped bordered hover>
           <tbody>
