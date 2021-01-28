@@ -16,8 +16,8 @@ const LogoutModal = () => {
       </Modal.Header>
       <Modal.Footer>
         <Button onClick={() => {
-          dispatch(logout())
           dispatch(hideModal())
+          dispatch(logout())
         }}>ДА</Button>
         <Button onClick={() => dispatch(hideModal())}>НЕТ</Button>
       </Modal.Footer>

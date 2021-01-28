@@ -4,7 +4,7 @@ import { login } from '../../store/auth/authActions'
 import { hideModal } from '../../store/modal/modalActions'
 import { useDispatch } from 'react-redux'
 
-const AuthModal = () => {
+const LoginModal = () => {
   const dispatch = useDispatch()
 
   return (
@@ -33,8 +33,8 @@ const AuthModal = () => {
               variant="primary"
               type="submit"
               onClick={() => {
-                dispatch(login())
                 dispatch(hideModal())
+                dispatch(login())
               }}
             >
               Авторизация
@@ -43,8 +43,8 @@ const AuthModal = () => {
               variant="primary"
               type="submit"
               onClick={() => {
-                dispatch(login())
                 dispatch(hideModal())
+                dispatch(login())
               }}
             >
               Регистрация
@@ -56,4 +56,4 @@ const AuthModal = () => {
   )
 }
 
-export default AuthModal
+export default LoginModal
