@@ -12,7 +12,12 @@ export const CLEAR_CART = 'CLEAR_CART'
 export const SUM_CART = 'SUM_CART'
 
 export const AUTH_SUCCESS = 'AUTH_SUCCESS'
+export const AUTH_ERROR = 'AUTH_ERROR'
+export const AUTH_CLEAR_ERROR = 'AUTH_CLEAR_ERROR'
 export const AUTH_LOGOUT = 'AUTH_LOGOUT'
+export const AUTH_START_LOADING = 'AUTH_START_LOADING'
+export const AUTH_STOP_LOADING = 'AUTH_STOP_LOADING'
+export const AUTH_CHANGE_FORM = 'AUTH_CHANGE_FORM'
 
 
 export const MODAL_HIDE = 'MODAL_HIDE'

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { NavLink } from 'react-router-dom'
 
-const LinkNavPanel = ({ to, children, classNames, exact = false }) => {
+const LinkNavPanel = ({ to, children, classNames = '', exact = false }) => {
   return (
     <NavLink to={to} className={`${classNames} nav-link`} exact={exact}>
       {children}

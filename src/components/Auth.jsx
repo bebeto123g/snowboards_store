@@ -1,56 +1,73 @@
-import React, { useState } from 'react'
-import { Button, Form, Modal } from 'react-bootstrap'
-import { useDispatch } from 'react-redux'
-import { login, register } from '../store/auth/authActions'
+import React from 'react'
+import { Form } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import { changeAuthForm, clearAuthError } from '../store/auth/authActions'
 
 const Auth = () => {
   const dispatch = useDispatch()
-
-  const [form, setForm] = useState({
-    email: '',
-    password: '',
-  })
+  const { form, error, isLogin } = useSelector(
+    (state) => state.auth
+  )
 
   const changeHandler = (e) => {
-    setForm({
-      ...form,
-      [e.target.id]: e.target.value,
-    })
+    dispatch(
+      changeAuthForm({
+        ...form,
+        [e.target.id]: e.target.value
+      })
+    )
   }
 
   return (
-    <>
-      <Form>
-        <Form.Group controlId="email" onBlur={changeHandler}>
-          <Form.Label>Email адрес</Form.Label>
-          <Form.Control type="email" placeholder="Email адрес" />
-          <Form.Text className="text-muted">
-            Никогда не делись своей электронной почтой с кем-либо еще.
+    <Form>
+      <Form.Group
+        controlId='email'
+        onFocus={() => dispatch(clearAuthError())}
+        onBlur={changeHandler}
+      >
+        <Form.Label>Email адрес</Form.Label>
+        <Form.Control
+          type='email'
+          placeholder='Email адрес'
+          defaultValue={form.email}
+          isInvalid={error && error.email}
+          isValid={isLogin}
+        />
+        {error && error.email ? (
+          <Form.Text className='' style={{ color: 'brown' }}>
+            {error.email}
           </Form.Text>
-        </Form.Group>
+        ) : (
+          <Form.Text className="text-muted">
+          Никогда не делись своей электронной почтой с кем-либо еще.
+          </Form.Text>
+          )}
+      </Form.Group>
 
-        <Form.Group controlId="password" onBlur={changeHandler}>
-          <Form.Label>Пароль</Form.Label>
-          <Form.Control type="password" placeholder="Пароль" />
-        </Form.Group>
-      </Form>
-      <Modal.Footer>
-        <Button
-          variant="primary"
-          type="submit"
-          onClick={() => dispatch(login(form))}
-        >
-          Авторизация
-        </Button>
-        <Button
-          variant="warning"
-          type="submit"
-          onClick={() => dispatch(register(form))}
-        >
-          Регистрация
-        </Button>
-      </Modal.Footer>
-    </>
+      <Form.Group
+        controlId='password'
+        onFocus={() => dispatch(clearAuthError())}
+        onBlur={changeHandler}
+      >
+        <Form.Label>Пароль</Form.Label>
+        <Form.Control
+          type='password'
+          placeholder='Пароль'
+          defaultValue={form.password}
+          isInvalid={error && error.password}
+          isValid={isLogin}
+        />
+        {error && error.password ? (
+          <Form.Text className='' style={{ color: 'brown' }}>
+            {error.password}
+          </Form.Text>
+        ) : (
+          <Form.Text className="text-muted">
+            Никому не передавайте свой пароль
+          </Form.Text>
+        )}
+      </Form.Group>
+    </Form>
   )
 }
 

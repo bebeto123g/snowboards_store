@@ -17,9 +17,7 @@ const CatalogPage = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    console.log('effect catalog page')
     if (!catalog) {
-      console.log('fetch json')
       dispatch(loadCatalog())
     }
   }, [dispatch, catalog])

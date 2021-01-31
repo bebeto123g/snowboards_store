@@ -21,30 +21,33 @@ const NavbarPanel = () => {
   const submitHandler = (value) => {
     console.log(value)
   }
+
   return (
-    <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
-      <NavLink to={'/'}>
-        <Logo src={logo} />
-      </NavLink>
-      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-      <Navbar.Collapse id="responsive-navbar-nav">
-        <Nav className="mr-auto">
-          <LinkNavPanel to={'/'} exact={true}>
-            Главная
-          </LinkNavPanel>
-          <LinkNavPanel to={'/catalog'}>Каталог</LinkNavPanel>
-          <LinkNavPanel to={'/brands'}>Брэнды</LinkNavPanel>
-        </Nav>
-        <LineSearch submit={submitHandler} />
-        <Button
-          className="ml-5"
-          variant="warning"
-          onClick={() => dispatch(showModal(isLogin ? 'logout' : 'login'))}
-        >
-          {isLogin ? 'Выйти' : 'Войти'}
-        </Button>
-      </Navbar.Collapse>
-    </Navbar>
+    <header>
+      <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
+        <NavLink to={'/'}>
+          <Logo src={logo} />
+        </NavLink>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="mr-auto">
+            <LinkNavPanel to={'/'} exact={true}>
+              Главная
+            </LinkNavPanel>
+            <LinkNavPanel to={'/catalog'}>Каталог</LinkNavPanel>
+            <LinkNavPanel to={'/brands'}>Брэнды</LinkNavPanel>
+          </Nav>
+          <LineSearch submit={submitHandler} />
+          <Button
+            className="ml-5"
+            variant="warning"
+            onClick={() => dispatch(showModal(isLogin ? 'logout' : 'login'))}
+          >
+            {isLogin ? 'Выйти' : 'Войти'}
+          </Button>
+        </Navbar.Collapse>
+      </Navbar>
+    </header>
   )
 }
 

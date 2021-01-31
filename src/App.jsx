@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { Container } from 'react-bootstrap'
@@ -8,10 +8,11 @@ import SwitchRoutes from './routes/SwitchRoutes'
 import NavbarPanel from './components/Navbar'
 import Footer from './components/Footer'
 import { initCart } from './store/cart/cartActions'
-import ModalWindow from './components/Modal/AuthModal/ModalWindow'
+import AuthModal from './components/Modal/AuthModal/AuthModal'
 import { hideModal } from './store/modal/modalActions'
+import AlertMessage from './UI/AlertMessage'
 
-const AppContainer = styled.div`
+const AppContainer = styled.main`
   height: calc(100vh - 126px);
   overflow-y: scroll;
 
@@ -27,6 +28,8 @@ const AppContainer = styled.div`
 const App = () => {
   const dispatch = useDispatch()
   const { show } = useSelector((state) => state.modal)
+  const { isAlert } = useSelector((state) => state.alert)
+
 
   useEffect(() => {
     dispatch(initCart())
@@ -37,12 +40,13 @@ const App = () => {
       <NavbarPanel />
       <AppContainer>
         <Container>
+          { isAlert && <AlertMessage />}
           <SwitchRoutes />
         </Container>
       </AppContainer>
       <Footer />
 
-      <ModalWindow show={show} onHide={() => dispatch(hideModal())} />
+      <AuthModal show={show} onHide={() => dispatch(hideModal())} />
     </>
   )
 }

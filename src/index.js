@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import 'react-bootstrap/bootstrap.min.css'
 import './global.sass'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
@@ -20,8 +19,10 @@ ReactDOM.render(
 
 reportWebVitals()
 
-// TODO авторизация с модалкой
+// TODO автовход по токену
+// TODO в authActions добаить localStorage или Cookie
+// TODO валидация формы, попробовать готовые решения ЗАВТРА!
+// TODO при успешной авторизации показать значок ОКАЙ зеленый с анимацией и через секунду скрыть модалку
 // TODO токен и прочая лабуда
 
 // TODO websoket изучить!!!! WebGL, Audio
-// TODO window

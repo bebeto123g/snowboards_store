@@ -1,4 +1,5 @@
 import { MODAL_HIDE, MODAL_SHOW } from '../types'
+import { clearAuthError } from '../auth/authActions'
 
 export const showModal = (type) => {
   return (dispatch) => {
@@ -14,5 +15,6 @@ export const hideModal = () => {
     dispatch({
       type: MODAL_HIDE
     })
+    dispatch(clearAuthError())
   }
 }

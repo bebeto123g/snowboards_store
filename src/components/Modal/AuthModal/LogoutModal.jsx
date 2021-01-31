@@ -15,10 +15,17 @@ const LogoutModal = () => {
         </Modal.Title>
       </Modal.Header>
       <Modal.Footer>
-        <Button onClick={() => {
-          dispatch(logout())
-        }}>ДА</Button>
-        <Button onClick={() => dispatch(hideModal())}>НЕТ</Button>
+        <Button
+          variant="danger"
+          onClick={() => {
+            dispatch(logout())
+          }}
+        >
+          ДА
+        </Button>
+        <Button variant="success" onClick={() => dispatch(hideModal())}>
+          НЕТ
+        </Button>
       </Modal.Footer>
     </>
   )

@@ -6,7 +6,7 @@ import ModalLoader from '../ModalLoader'
 const LoginModal = lazy(() => import('./LoginModal'))
 const LogoutModal = lazy(() => import('./LogoutModal'))
 
-const ModalWindow = (props) => {
+const AuthModal = (props) => {
   const { type } = useSelector((state) => state.modal)
 
   return (
@@ -29,4 +29,4 @@ const ModalWindow = (props) => {
   )
 }
 
-export default ModalWindow
+export default AuthModal
