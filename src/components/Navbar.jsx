@@ -1,12 +1,11 @@
 import React from 'react'
-import { Button, Nav, Navbar } from 'react-bootstrap'
+import { Nav, Navbar } from 'react-bootstrap'
 import LinkNavPanel from '../UI/LinkNavPanel'
 import LineSearch from '../UI/LineSearch'
 import logo from '../assets/logo.png'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { showModal } from '../store/modal/modalActions'
+import AuthButton from '../UI/AuthButton'
 
 const Logo = styled.img`
   width: 40px;
@@ -15,8 +14,7 @@ const Logo = styled.img`
 `
 
 const NavbarPanel = () => {
-  const dispatch = useDispatch()
-  const { isLogin } = useSelector((state) => state.auth)
+
 
   const submitHandler = (value) => {
     console.log(value)
@@ -38,13 +36,7 @@ const NavbarPanel = () => {
             <LinkNavPanel to={'/brands'}>Брэнды</LinkNavPanel>
           </Nav>
           <LineSearch submit={submitHandler} />
-          <Button
-            className="ml-5"
-            variant="warning"
-            onClick={() => dispatch(showModal(isLogin ? 'logout' : 'login'))}
-          >
-            {isLogin ? 'Выйти' : 'Войти'}
-          </Button>
+          <AuthButton />
         </Navbar.Collapse>
       </Navbar>
     </header>

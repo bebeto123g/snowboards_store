@@ -11,7 +11,7 @@ const LineSearch = ({ submit, variant = 'success' }) => {
   }
 
   return (
-    <Form inline onSubmit={submitHandler}>
+    <Form inline onSubmit={submitHandler} className="mr-5">
       <FormControl type="text" placeholder="Поиск" className="mr-2 mb-2 mb-sm-0" />
       <Button type="submit" variant={variant}>
         Поиск

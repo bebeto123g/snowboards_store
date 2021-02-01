@@ -9,6 +9,7 @@ import {
 
 const initState = {
   isLogin: false,
+  message: '',
   loading: false,
   token: '',
   userId: null,
@@ -26,7 +27,8 @@ export function authReducer(state = initState, { type, payload }) {
         ...state,
         isLogin: true,
         token: payload.token,
-        userId: payload.userId
+        userId: payload.userId,
+        message: payload.message
       }
 
     case AUTH_ERROR:

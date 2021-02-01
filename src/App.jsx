@@ -11,6 +11,7 @@ import { initCart } from './store/cart/cartActions'
 import AuthModal from './components/Modal/AuthModal/AuthModal'
 import { hideModal } from './store/modal/modalActions'
 import AlertMessage from './UI/AlertMessage'
+import { initAuth } from './store/auth/authActions'
 
 const AppContainer = styled.main`
   height: calc(100vh - 126px);
@@ -30,9 +31,12 @@ const App = () => {
   const { show } = useSelector((state) => state.modal)
   const { isAlert } = useSelector((state) => state.alert)
 
-
   useEffect(() => {
     dispatch(initCart())
+  }, [dispatch])
+
+  useEffect(() => {
+    dispatch(initAuth())
   }, [dispatch])
 
   return (
@@ -40,7 +44,7 @@ const App = () => {
       <NavbarPanel />
       <AppContainer>
         <Container>
-          { isAlert && <AlertMessage />}
+          {isAlert && <AlertMessage />}
           <SwitchRoutes />
         </Container>
       </AppContainer>

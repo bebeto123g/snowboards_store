@@ -1,12 +1,15 @@
 import { CLEAR_CART, SET_CART, SUM_CART } from '../types'
 import { loadCatalog } from '../catalog/catalogActions'
+import { fetchToOrder } from '../../services/fetchToOrder'
+import { showAlert } from '../alert/alertActions'
+import { startLoading, stopLoading } from '../loading/loadingActions'
 
 // cart { id: current }
 
 export const initCart = () => {
   return async (dispatch) => {
     const cart = JSON.parse(localStorage.getItem('cart'))
-    if (Object.keys(cart).length) {
+    if (cart && Object.keys(cart).length) {
       await dispatch(loadCatalog())
       dispatch(setCart(cart))
     }
@@ -21,7 +24,7 @@ export const addToCart = (id, current = 1) => {
     }
     const { catalog, mapCatalog } = getState().catalog
     const index = mapCatalog[id]
-    const {reserve} = catalog[index]
+    const { reserve } = catalog[index]
 
     if (current > reserve) return
 
@@ -79,5 +82,31 @@ export const sumCart = (cart = {}) => {
       type: SUM_CART,
       payload: sum,
     })
+  }
+}
+
+export const toOrderCart = () => {
+  return async (dispatch, getState) => {
+    try {
+      dispatch(startLoading())
+      const { cart: oldCart, sum } = getState().cart
+      const { token } = getState().auth
+      const { catalog, mapCatalog } = getState().catalog
+
+      const cart = Object.keys(oldCart).map((key) => {
+        const index = mapCatalog[key]
+        return { id: key, count: oldCart[key], price: catalog[index].price }
+      })
+
+      const response = await fetchToOrder({ cart, sum }, token)
+
+      dispatch(clearCart())
+      dispatch(stopLoading())
+      dispatch(showAlert('success', response.data.message))
+    } catch (e) {
+      console.log(e)
+      dispatch(stopLoading())
+      dispatch(showAlert('danger', 'Оказия при отправке заказа!'))
+    }
   }
 }

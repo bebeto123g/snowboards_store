@@ -23,7 +23,7 @@ export const stopAuth = () => {
 }
 
 export const register = () => {
-  return async (dispatch) => {
+  return (dispatch) => {
     dispatch(sendAuthForm('register'))
   }
 }
@@ -36,6 +36,8 @@ export const login = () => {
 
 export const logout = () => {
   return (dispatch) => {
+    localStorage.removeItem('token')
+    localStorage.removeItem('userId')
     dispatch(hideModal())
     dispatch({
       type: AUTH_LOGOUT,
@@ -59,11 +61,14 @@ export const sendAuthForm = (type) => {
 
       const response = await fetchAuthForm(type, form)
 
-      const { token, userId } = response.data
+      const { token, userId, message } = response.data
+
+      localStorage.setItem('token', token)
+      localStorage.setItem('userId', userId)
 
       dispatch({
         type: AUTH_SUCCESS,
-        payload: { token, userId },
+        payload: { token, userId, message },
       })
 
       const tid = setTimeout(() => {
@@ -110,5 +115,19 @@ export const authError = (e) => {
 export const clearAuthError = () => {
   return {
     type: AUTH_CLEAR_ERROR,
+  }
+}
+
+export const initAuth = () => {
+  return (dispatch) => {
+    const token = localStorage.getItem('token')
+    const userId = localStorage.getItem('userId')
+
+    if (token && userId) {
+      dispatch({
+        type: AUTH_SUCCESS,
+        payload: { token, userId },
+      })
+    }
   }
 }

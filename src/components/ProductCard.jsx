@@ -41,7 +41,10 @@ const ProductCard = ({ brand, id, img, name, price, reserve, year }) => {
         </Card.Text>
       </Card.Body>
       <Card.Footer>
-        {inCart ? (
+        {
+          !reserve ? (
+            <p style={{margin: '7px'}}>Нет на складе :(</p>
+          ) : inCart ? (
           <Button
             variant={'danger'}
             onClick={() => {

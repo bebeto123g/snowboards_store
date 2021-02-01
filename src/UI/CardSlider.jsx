@@ -11,17 +11,24 @@ const CarouselSC = styled(Carousel)`
     height: 400px;
     object-fit: contain;
   }
-  
+
   .carousel-control-prev-icon {
     background-image: url(${prevIcon});
   }
-  
+
   .carousel-control-next-icon {
     background-image: url(${nextIcon});
   }
-  
-  .carousel-indicators li {
-    background-color: #000;
+
+  .carousel-indicators {
+    bottom: -40px;
+
+    li {
+      background-color: #808080;
+      &.active {
+        background-color: #000;
+      }
+    }
   }
 `
 
@@ -32,6 +39,7 @@ const CardSlider = ({ img }) => {
     <CarouselSC
       activeIndex={index}
       onSelect={(selectedIndex) => setIndex(selectedIndex)}
+      interval={null}
     >
       {img.map((src) => (
         <Carousel.Item key={src}>

@@ -7,7 +7,7 @@ import AuthAlert from './AuthAlert'
 import LoginModalFooter from './LoginModalFooter'
 
 const LoginModal = () => {
-  const { loading, error, isLogin } = useSelector((state) => state.auth)
+  const { loading, error, isLogin, message } = useSelector((state) => state.auth)
 
   return (
     <>
@@ -24,7 +24,7 @@ const LoginModal = () => {
         {loading ? (
           <ModalLoader />
         ) : isLogin ? (
-          <AuthAlert variant={'success'}>Вы успешно вошли в систему</AuthAlert>
+          <AuthAlert variant={'success'}>{message}</AuthAlert>
         ) : (
           <Auth />
         )}
