@@ -1,4 +1,4 @@
-import { LOAD_CATALOG, MAP_CATALOG } from '../types'
+import { SET_CATALOG, MAP_CATALOG } from '../types'
 
 const initState = {
   catalog: null,
@@ -7,7 +7,7 @@ const initState = {
 
 export function catalogReducer(state = initState, { type, payload }) {
   switch (type) {
-    case LOAD_CATALOG:
+    case SET_CATALOG:
       return {
         ...state,
         catalog: payload,

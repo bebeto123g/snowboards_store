@@ -1,19 +1,19 @@
 import React, { useEffect } from 'react'
-import styled from 'styled-components'
+import { shallowEqual, useDispatch, useSelector } from 'react-redux'
+
 import { Col, Row } from 'react-bootstrap'
-import Loader from '../UI/Loader'
-import { useDispatch, useSelector } from 'react-redux'
-import { loadCatalog } from '../store/catalog/catalogActions'
-import ProductCard from '../components/ProductCard'
+import Page from '../hoc/Page'
+
+import LoaderPage from '../UI/Loader/LoaderPage'
 import PageHeader from '../UI/PageHeader'
 
-const ColProduct = styled(Col)`
-  padding: 15px;
-`
+import CatalogCard from '../components/Catalog/Card'
+import { loadCatalog, updateCatalog } from '../store/catalog/catalogActions'
 
 const CatalogPage = () => {
-  const { loading } = useSelector((state) => state.loading)
-  const { catalog } = useSelector((state) => state.catalog)
+  const { catalog } = useSelector((state) => state.catalog, shallowEqual)
+  const { pageError } = useSelector((state) => state.pageLoading, shallowEqual)
+
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -22,19 +22,23 @@ const CatalogPage = () => {
     }
   }, [dispatch, catalog])
 
-  if (loading || !catalog) return <Loader />
+  useEffect(() => {
+    return () => dispatch(updateCatalog())
+  }, [dispatch])
+
+  if (!catalog && !pageError) return <LoaderPage />
 
   return (
-    <>
+    <Page>
       <PageHeader>Каталог сноубордов</PageHeader>
       <Row>
-        {catalog.map((product) => (
-          <ColProduct md="6" lg="6" xl="4" key={product.id}>
-            <ProductCard {...product} />
-          </ColProduct>
+        {catalog && catalog.map((product) => (
+          <Col className="p-2" md="6" lg="6" xl="4" key={product.id}>
+            <CatalogCard {...product} />
+          </Col>
         ))}
       </Row>
-    </>
+    </Page>
   )
 }
 

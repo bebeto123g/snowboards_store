@@ -1,8 +1,8 @@
-import { CLEAR_CART, SET_CART, SUM_CART } from '../types'
+import { CLEAR_CART, SET_CART } from '../types'
 
 const initState = {
   cart: null,
-  sum: 0
+  sum: 0,
 }
 
 export function cartReducer(state = initState, { type, payload }) {
@@ -10,17 +10,12 @@ export function cartReducer(state = initState, { type, payload }) {
     case SET_CART:
       return {
         ...state,
-        cart: payload
+        cart: payload.cart,
+        sum: payload.sum,
       }
 
     case CLEAR_CART:
       return initState
-
-    case SUM_CART:
-      return {
-        ...state,
-        sum: payload
-      }
 
     default:
       return state

@@ -1,18 +1,18 @@
 import { LOAD_BRANDS } from '../types'
 import { fetchBrandList } from '../../services/fetchBrandlist'
-import { startLoading, stopLoading } from '../loading/loadingActions'
+import { loadingPageError } from '../pageLoading/pageLoadingActions'
 
 export const loadBrands = () => {
   return async (dispatch) => {
-    dispatch(startLoading())
+    try {
+      const brands = await fetchBrandList()
 
-    const brands = await fetchBrandList()
-
-    dispatch({
-      type: LOAD_BRANDS,
-      payload: brands,
-    })
-
-    dispatch(stopLoading())
+      dispatch({
+        type: LOAD_BRANDS,
+        payload: brands,
+      })
+    } catch (e) {
+      dispatch(loadingPageError())
+    }
   }
 }

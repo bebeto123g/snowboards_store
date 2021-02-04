@@ -1,56 +1,34 @@
-import React from 'react'
-import { useHistory } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import React, { useEffect } from 'react'
+import { shallowEqual, useSelector } from 'react-redux'
 
-import { Button, Row, Table } from 'react-bootstrap'
-import ProductCaleInCart from '../components/ProductCaleInCart'
+import { Row, Table } from 'react-bootstrap'
+
+import CartTableCell from '../components/Cart/CartTableCell'
+import CartBottom from '../components/Cart/CartBottom.jsx'
+import CartEmpty from '../components/Cart/CartEmpty'
+
 import PageHeader from '../UI/PageHeader'
-import OrderButton from '../UI/OrderButton'
-import AuthButton from '../UI/AuthButton'
-import Loader from '../UI/Loader'
+import Page from '../hoc/Page'
 
 const CartPage = () => {
-  const { cart } = useSelector((state) => state.cart)
-  const { catalog, mapCatalog } = useSelector((state) => state.catalog)
-  const { isLogin } = useSelector((state) => state.auth)
-  const { loading } = useSelector((state) => state.loading)
-  let history = useHistory()
+  const { cartMap } = useSelector((state) => state.cartMap, shallowEqual)
 
-  if (loading) return <Loader />
-
-  if (!cart || !Object.keys(cart).length)
-    return (
-      <>
-        <PageHeader>Корзина пуста</PageHeader>
-        <Row>
-          <Button variant={'info'} className="mx-auto" onClick={() => history.push('/catalog')}>
-            Перейти в каталог
-          </Button>
-        </Row>
-      </>
-    )
+  if (!cartMap.length) return <CartEmpty />
 
   return (
-    <>
+    <Page>
       <PageHeader>Корзина</PageHeader>
       <Row>
         <Table striped bordered hover>
           <tbody>
-            {Object.keys(cart).map((key) => {
-              const index = mapCatalog[key]
-              const product = catalog[index]
-
-              return <ProductCaleInCart {...product} key={product.id} />
-            })}
+            {cartMap.map((id) => (
+              <CartTableCell id={id} key={id} />
+            ))}
           </tbody>
         </Table>
       </Row>
-      <Row>
-        <div className="ml-auto">
-          {isLogin ? <OrderButton /> : <AuthButton />}
-        </div>
-      </Row>
-    </>
+      <CartBottom />
+    </Page>
   )
 }
 

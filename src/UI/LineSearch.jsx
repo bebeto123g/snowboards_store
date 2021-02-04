@@ -1,14 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
+
 import { Button, Form, FormControl } from 'react-bootstrap'
 
 const LineSearch = ({ submit, variant = 'success' }) => {
+
   const submitHandler = (e) => {
     e.preventDefault()
     let value = e.target.firstChild.value.trim()
     if (!value) return
     submit(value)
   }
+
+  useEffect(() => {
+    console.log('LineSearch')
+  })
 
   return (
     <Form inline onSubmit={submitHandler} className="mr-5">

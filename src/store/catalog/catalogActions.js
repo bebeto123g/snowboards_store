@@ -1,21 +1,33 @@
-import { LOAD_CATALOG, MAP_CATALOG } from '../types'
-import { startLoading, stopLoading } from '../loading/loadingActions'
+import { SET_CATALOG, MAP_CATALOG } from '../types'
+import { loadingPageError } from '../pageLoading/pageLoadingActions'
 import { fetchCatalog } from '../../services/fetchCatalog'
 
 export const loadCatalog = () => {
   return async (dispatch) => {
-    dispatch(startLoading())
-    const catalog = await fetchCatalog()
-    dispatch({
-      type: LOAD_CATALOG,
-      payload: catalog,
-    })
-    dispatch(mapCatalog(catalog))
-    dispatch(stopLoading())
+    try {
+      const catalog = await fetchCatalog()
+
+      const cartMap = JSON.parse(localStorage.getItem('cartMap'))
+
+      catalog.forEach((item) => {
+        cartMap
+          ? (item.inCart = cartMap.includes(item.id))
+          : (item.inCart = false)
+      })
+
+      dispatch({
+        type: SET_CATALOG,
+        payload: catalog,
+      })
+
+      dispatch(mapCatalog(catalog))
+    } catch {
+      dispatch(loadingPageError())
+    }
   }
 }
 
-const mapCatalog = (catalog) => {
+export const mapCatalog = (catalog) => {
   const mapCatalog = {}
   catalog.forEach(({ id }, index) => {
     mapCatalog[id] = index
@@ -24,5 +36,25 @@ const mapCatalog = (catalog) => {
   return {
     type: MAP_CATALOG,
     payload: mapCatalog,
+  }
+}
+
+export const updateCatalog = () => {
+  return (dispatch, getState) => {
+    const { catalog } = getState().catalog
+    const { cartMap } = getState().cartMap
+
+    if (!cartMap) return
+
+    const newCatalog = [...catalog]
+
+    newCatalog.forEach((item) => {
+      item.inCart = cartMap.includes(item.id)
+    })
+
+    dispatch({
+      type: SET_CATALOG,
+      payload: newCatalog,
+    })
   }
 }
