@@ -11,10 +11,6 @@ const CartTableCell = ({ id }) => {
   const { catalog, mapCatalog } = useSelector((state) => state.catalog)
   const dispatch = useDispatch()
 
-  const updateCatalogFromCart = useCallback(() => {
-    dispatch(updateCatalog())
-  }, [dispatch])
-
   const index = mapCatalog[id]
   const { brand, price, name } = catalog[index]
 
@@ -29,7 +25,7 @@ const CartTableCell = ({ id }) => {
       <td>{price} &#8381;</td>
 
       <td>
-        <ButtonRemoveFromCart id={id} callback={updateCatalogFromCart}>
+        <ButtonRemoveFromCart id={id}>
           &#10008;
         </ButtonRemoveFromCart>
       </td>

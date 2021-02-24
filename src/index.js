@@ -18,9 +18,6 @@ ReactDOM.render(
 
 reportWebVitals()
 
-
-// TODO модалка для обратного звонка
-
 // TODO websoket изучить!!!! WebGL, Audio
 
 // TODO на сервере можно будет редактировать еще не высланный заказ, изменять статус

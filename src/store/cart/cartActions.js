@@ -34,7 +34,8 @@ export const cartIncrement = (id) => {
     const index = mapCatalog[id]
     const { reserve } = catalog[index]
 
-    let count = ++cart[id]
+    let count = cart[id] + 1
+    console.log(count)
     if (count > reserve) return
 
     dispatch(setCart({ ...cart, [id]: count }))
@@ -45,7 +46,7 @@ export const cartDecrement = (id) => {
   return (dispatch, getState) => {
     const { cart } = getState().cart
 
-    let count = --cart[id]
+    let count = cart[id] - 1
     if (count === 0) {
       dispatch(removeFromCart(id))
       return
@@ -80,6 +81,7 @@ export const removeFromCart = (id) => {
     }
     dispatch(removeFromMapCart(id))
     dispatch(setCart(newCart))
+    dispatch(updateCatalog())
   }
 }
 
@@ -88,7 +90,7 @@ export const clearCart = () => {
   return (dispatch) => {
     localStorage.removeItem('cart')
     dispatch(clearMapCart())
-
+    dispatch(updateCatalog())
     dispatch({
       type: CLEAR_CART,
     })
