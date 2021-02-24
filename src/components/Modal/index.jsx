@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Modal } from 'react-bootstrap'
 
 import { hideModal } from '../../store/modal/modalActions'
-import { ModalTypes } from './modaTypes'
+import { ModalTypes } from './modalTypes'
 
 const ModalApp = () => {
   const dispatch = useDispatch()

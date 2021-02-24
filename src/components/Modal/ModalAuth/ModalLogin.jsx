@@ -3,7 +3,7 @@ import React, { useCallback } from 'react'
 import { Button, Form, Modal } from 'react-bootstrap'
 
 import ButtonShowModal from '../../../UX/Modal/ButtonShowModal'
-import ModalHeader from '../../../UI/Modal/ModalHeader'
+import ModalHeader from '../ModalHeader'
 import AuthFormLogin from '../../AuthForm/AuthFormLogin'
 import { createFormObject } from '../../../services/createFormObject'
 import { login } from '../../../store/auth/authActions'

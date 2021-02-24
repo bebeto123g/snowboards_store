@@ -11,13 +11,13 @@ const initState = {
   message: '',
   userId: null,
   error: null,
-  validate: false,
   form: {
     email: '',
     password: '',
     userName: '',
     tel: ''
   },
+  profile: null
 }
 
 export function authReducer(state = initState, { type, payload }) {
@@ -29,6 +29,7 @@ export function authReducer(state = initState, { type, payload }) {
         userId: payload.userId,
         message: payload.message,
         form: payload.form,
+        profile: payload.profile
       }
 
     case AUTH_CHANGE_FORM:
@@ -42,14 +43,12 @@ export function authReducer(state = initState, { type, payload }) {
         ...state,
         error: { ...payload.errors},
         form: payload.form,
-        validate: true,
       }
 
     case AUTH_CLEAR_ERROR:
       return {
         ...state,
         error: null,
-        validate: false
       }
 
     case AUTH_LOGOUT:

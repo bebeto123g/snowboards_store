@@ -14,7 +14,7 @@ const ButtonOrderCart = ({ children, variant = 'success', callback }) => {
     if (callback) {
       callback()
     }
-  }, [dispatch])
+  }, [dispatch, callback])
 
   return (
     <Button variant={variant} onClick={handler}>

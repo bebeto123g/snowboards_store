@@ -1,6 +1,7 @@
 import { LOAD_BRANDS } from '../types'
 import { fetchBrandList } from '../../services/fetchBrandlist'
 import { loadingPageError } from '../pageLoading/pageLoadingActions'
+import { showAlert } from '../alert/alertActions'
 
 export const loadBrands = () => {
   return async (dispatch) => {
@@ -13,6 +14,7 @@ export const loadBrands = () => {
       })
     } catch (e) {
       dispatch(loadingPageError())
+      dispatch(showAlert('danger', 'Ошибка загрузки брэндов!'))
     }
   }
 }

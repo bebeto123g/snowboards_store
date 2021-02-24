@@ -1,4 +1,5 @@
 export const useValidateForm = (form) => {
+
   const { email, password, tel, userName } = form
 
   const validateEmail = () => {
@@ -38,7 +39,7 @@ export const useValidateForm = (form) => {
 
   let errors
 
-  if (!registerValidate()) {
+  if (!registerValidate() && tel && userName) {
     errors = {
       email: validateEmail() ? '' : 'Неверный формат email адреса',
       password: validatePassword() ? '' : 'Пароль должен быть минимум 6 символов',

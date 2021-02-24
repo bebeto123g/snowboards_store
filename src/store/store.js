@@ -15,6 +15,7 @@ import { modalReducer } from './modal/modalReducer'
 import { brandsReducer } from './brands/brandsReducer'
 import { cartMapReducer } from './cartMap/cartMapReducer'
 import { isLoginReducer } from './isLogin/isLoginReducer'
+import { ordersReducer } from './orders/ordersReducer'
 
 // для использования Redux-devTools
 const composeEnhancers =
@@ -32,7 +33,8 @@ export const store = createStore(
     isLogin: isLoginReducer,
     modal: modalReducer,
     brands: brandsReducer,
-    cartMap: cartMapReducer
+    cartMap: cartMapReducer,
+    orders: ordersReducer
   }),
   composeEnhancers(applyMiddleware(reduxThunk))
 )

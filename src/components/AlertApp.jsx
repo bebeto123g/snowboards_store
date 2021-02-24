@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { hideAlert } from '../store/alert/alertActions'
 import AlertUI from '../UI/Alert'

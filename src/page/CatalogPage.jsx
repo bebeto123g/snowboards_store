@@ -32,11 +32,12 @@ const CatalogPage = () => {
     <Page>
       <PageHeader>Каталог сноубордов</PageHeader>
       <Row>
-        {catalog && catalog.map((product) => (
-          <Col className="p-2" md="6" lg="6" xl="4" key={product.id}>
-            <CatalogCard {...product} />
-          </Col>
-        ))}
+        {catalog &&
+          catalog.map((product) => (
+            <Col className="p-2" md="6" lg="6" xl="4" key={product.id}>
+              <CatalogCard {...product} />
+            </Col>
+          ))}
       </Row>
     </Page>
   )

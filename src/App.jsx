@@ -19,8 +19,12 @@ const App = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(initCart())
     dispatch(initAuth())
+  }, [dispatch])
+
+  useEffect(() => {
+    dispatch(initCart())
+
   }, [dispatch])
 
   return (

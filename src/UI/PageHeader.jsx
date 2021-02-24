@@ -5,7 +5,7 @@ import { Row } from 'react-bootstrap'
 
 const PageHeader = ({ children, color = 'black' }) => {
   return (
-    <Row className={`d-flex justify-content-center pt-2`}>
+    <Row className={`d-flex justify-content-center py-2`}>
       <h1 className="text-center" style={{ color }}>{children}</h1>
     </Row>
   )

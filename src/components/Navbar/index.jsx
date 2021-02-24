@@ -1,17 +1,16 @@
-import React, { useCallback } from 'react'
+import React  from 'react'
 
 import { Navbar } from 'react-bootstrap'
 
-import LineSearch from '../../UI/LineSearch'
 import NavbarButtonAuth from './NavbarButtonAuth'
 
 import NavLogo from '../../styled/NavLogo'
 import NavLinks from './NavLinks'
 
 const NavbarPanel = () => {
-  const submitHandlerSearch = useCallback((value) => {
-    console.log(value)
-  }, [])
+  // const submitHandlerSearch = useCallback((value) => {
+  //   console.log(value)
+  // }, [])
 
   return (
     <header>
@@ -20,7 +19,7 @@ const NavbarPanel = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <NavLinks />
-          <LineSearch submit={submitHandlerSearch} />
+          {/*<LineSearch submit={submitHandlerSearch} />*/}
           <NavbarButtonAuth />
         </Navbar.Collapse>
       </Navbar>

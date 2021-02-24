@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import { Row } from 'react-bootstrap'
 
 import CartSum from './CartSum'
-import ButtonOrderCart from '../../UX/Cart/ButtonOrderCart'
+import ButtonShowModal from '../../UX/Modal/ButtonShowModal'
 
 const CartBottom = () => {
   const { isLogin } = useSelector((state) => state.isLogin)
@@ -12,17 +12,20 @@ const CartBottom = () => {
   if (!isLogin)
     return (
       <Row className="justify-content-end">
-        Откроем модалку
+        <ButtonShowModal type={'login'} variant={'info'}>
+          Войти в систему
+        </ButtonShowModal>
       </Row>
     )
 
   return (
-    <Row className="justify-content-between">
-      <span className="ml-3">
-        {' '}
+    <Row className="justify-content-between align-items-center">
+      <span className="ml-3 h3 font-weight-bolder">
         <CartSum /> &#8381;
       </span>
-      <ButtonOrderCart>Отправить заказ</ButtonOrderCart>
+      <ButtonShowModal type={'order'} variant={'success'}>
+        Отправить заказ
+      </ButtonShowModal>
     </Row>
   )
 }

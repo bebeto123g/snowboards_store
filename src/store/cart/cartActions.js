@@ -8,6 +8,7 @@ import {
 import { loadCatalog, updateCatalog } from '../catalog/catalogActions'
 import { fetchToOrder } from '../../services/fetchToOrder'
 import { showAlert } from '../alert/alertActions'
+import { loadOrders } from '../orders/ordersActions'
 
 // общая функция записи состояния корзины и суммы
 export const setCart = (cart) => {
@@ -36,7 +37,7 @@ export const cartIncrement = (id) => {
     let count = ++cart[id]
     if (count > reserve) return
 
-    dispatch(setCart({ ...cart, id: count }))
+    dispatch(setCart({ ...cart, [id]: count }))
   }
 }
 
@@ -50,7 +51,7 @@ export const cartDecrement = (id) => {
       return
     }
 
-    dispatch(setCart({ ...cart, id: count }))
+    dispatch(setCart({ ...cart, [id]: count }))
   }
 }
 
@@ -123,6 +124,7 @@ export const toOrderCart = () => {
       const { cart: oldCart, sum } = getState().cart
       const { token } = getState().auth
       const { catalog, mapCatalog } = getState().catalog
+      const { orders } = getState().orders
 
       const cart = Object.keys(oldCart).map((key) => {
         const index = mapCatalog[key]
@@ -134,6 +136,10 @@ export const toOrderCart = () => {
       dispatch(clearCart())
       dispatch(updateCatalog())
       dispatch(showAlert('success', response.data.message))
+
+      if (orders && orders.length) {
+        dispatch(loadOrders())
+      }
     } catch {
       dispatch(showAlert('danger', 'Оказия при отправке заказа!'))
     }

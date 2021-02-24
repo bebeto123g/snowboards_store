@@ -7,7 +7,7 @@ const AlertCS = styled(Alert)`
   margin: 5px 16px;
 `
 
-const ModalAlert = ({children, variant}) => {
+const ModalAlert = ({children, variant = 'secondary'}) => {
   return (
     <AlertCS variant={variant}>
       {children}

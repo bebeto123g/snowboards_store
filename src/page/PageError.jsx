@@ -20,10 +20,6 @@ const PageError = () => {
     return () => dispatch(clearPageError())
   }, [dispatch])
 
-  useEffect(() => {
-    console.log('render PageError')
-  })
-
   return (
     <>
       <PageHeader color={'brown'}>Оказия при загрузке данных!</PageHeader>

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useCallback } from 'react'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
 
@@ -17,12 +17,16 @@ const CounterCart = ({ id }) => {
     dispatch(cartIncrement(id))
   }, [dispatch, id])
 
-  useEffect(() => {
-    console.log('render CounterCart')
-  })
-
   return (
-    <Counter counter={cart[id]} decrement={decrement} increment={increment} />
+    <>
+      {cart && (
+        <Counter
+          counter={cart[id]}
+          decrement={decrement}
+          increment={increment}
+        />
+      )}
+    </>
   )
 }
 

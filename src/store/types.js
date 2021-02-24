@@ -12,7 +12,7 @@ export const MAP_CATALOG = 'MAP_CATALOG'
 export const SET_CART = 'SET_CART'
 export const CLEAR_CART = 'CLEAR_CART'
 
-export const SET_CART_MAP = 'DELETE_CART_MAP'
+export const SET_CART_MAP = 'SET_CART_MAP'
 export const CLEAR_CART_MAP = 'CLEAR_CART_MAP'
 
 export const AUTH_SUCCESS = 'AUTH_SUCCESS'
@@ -28,3 +28,7 @@ export const MODAL_HIDE = 'MODAL_HIDE'
 export const MODAL_SHOW = 'MODAL_SHOW'
 
 export const LOAD_BRANDS = 'LOAD_BRANDS'
+
+export const LOAD_ORDERS = 'LOAD_ORDERS'
+export const DETAIL_ORDER = 'DETAIL_ORDER'
+export const CLEAR_ORDERS = 'CLEAR_ORDERS'

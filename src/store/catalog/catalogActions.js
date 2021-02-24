@@ -44,7 +44,7 @@ export const updateCatalog = () => {
     const { catalog } = getState().catalog
     const { cartMap } = getState().cartMap
 
-    if (!cartMap) return
+    if (!cartMap || !catalog) return
 
     const newCatalog = [...catalog]
 

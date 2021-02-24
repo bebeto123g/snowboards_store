@@ -5,7 +5,7 @@ import { Button, Form, Modal } from 'react-bootstrap'
 
 import AuthFormRegister from '../../AuthForm/AuthFormRegister'
 import ButtonShowModal from '../../../UX/Modal/ButtonShowModal'
-import ModalHeader from '../../../UI/Modal/ModalHeader'
+import ModalHeader from '../ModalHeader'
 import { createFormObject } from '../../../services/createFormObject'
 import { register } from '../../../store/auth/authActions'
 
